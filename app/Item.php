@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
-    protected $fillable = array('name_item','stok_item','unit_item');
+    protected $fillable = ['name_item','stok_item'];
     public $timestamps = false;
+    public function detail(){
+        return $this->hasMany('App\detail');
+    }
+    
 }

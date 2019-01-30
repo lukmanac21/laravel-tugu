@@ -8,31 +8,30 @@ class PositionController extends Controller
 {
          //showing all data from table
          public function index(){
-            return Position::all();
+            $position = Position::all();
+            return view('pages/position', compact('position'));
         }
         //adding new data to the table
-        public function create(request $request){
+        public function store(request $request){
             $poss = new Position;
             $poss->name_position = $request->name_position;
             $poss->save();
     
-            return "Success adding new data !";
+            return redirect('position')->with('message','success adding data');
         }
         //updating data from the table
         public function update(request $request,$id){
-            $name_position = $request->name_position;
-
             $poss = Position::find($id);
-            $poss->name_position = $name_position;
+            $poss->name_position = $request->name_position;
             $poss->save();
 
-            return "Success updating data !";
+            return redirect('position')->with('message','success updating data');
         }
         //deleting data from the database
-        public function delete(request $request, $id){
+        public function destroy(request $request, $id){
             $poss = Position::find($id);
             $poss->delete();
 
-            return "Data has been deleted !";
+            return redirect('position')->with('message','success deleting data');
         }
 }

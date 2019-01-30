@@ -12,5 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages/welcome');
 });
+Route::get('/login','UserController@loginpage');
+Route::resource('item','ItemController');
+Route::resource('position','PositionController');
+Route::resource('user','UserController');
+Route::resource('card','CardController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

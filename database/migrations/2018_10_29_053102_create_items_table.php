@@ -17,7 +17,6 @@ class CreateItemsTable extends Migration
             $table->increments('id');
             $table->string('name_item');
             $table->integer('stock_item');
-            $table->string('unit_item');
         });
     }
 

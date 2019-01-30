@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
                 ->onDelete('cascade');
             $table->integer('id_position')->unsigned()->index();
             $table->foreign('id_position')
-                ->references('id')->on('position')
+                ->references('id')->on('positions')
                 ->onDelete('cascade');
             $table->string('name');
             $table->string('address');

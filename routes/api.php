@@ -16,6 +16,24 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::middleware('auth.admin')->group(function(){
+    Route::post('login','UserController@login');
+});
+
+Route::group([
+    'prefix' => 'auth'
+    ], function(){
+    Route::post('login','UserController@login');
+    Route::post('signup','UserController@create');
+
+    Route::group([
+        'middleware' => 'auth:api'
+    ], function(){
+        Route::get('logout','UserController@logout');
+        Route::get('user','UsreController@user');
+    });
+});
+
 Route::get('roles','RolesController@index');
 Route::post('roles','RolesController@create');
 Route::put('/roles/{id}','RolesController@update');
@@ -30,3 +48,5 @@ Route::get('item','ItemController@index');
 Route::post('item','ItemController@create');
 Route::put('/item/{id}','ItemController@update');
 Route::delete('/item/{id}','ItemController@delete');
+
+Route::post('card','CardController@create');

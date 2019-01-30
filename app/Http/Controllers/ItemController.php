@@ -9,31 +9,30 @@ class ItemController extends Controller
 {
     //showing all data from the table
     public function index(){
-        return Item::all();
-    }  
-    public function create(request $request){
+        $items = Item::paginate(5);
+        return view('pages/item', compact('items'));
+    }
+    public function store(Request $request)
+    {
         $item = new Item;
         $item->name_item = $request->name_item;
         $item->stock_item = $request->stock_item;
-        $item->unit_item = $request->unit_item;
         $item->save();
-
-        return("Success to add new data !");
-    }  
+        return redirect('item')->with('message','success adding data');
+    }      
     public function update(request $request,$id){
         $item = Item::find($id);
 
         $item->name_item = $request->name_item;
         $item->stock_item = $request->stock_item;
-        $item->unit_item = $request->unit_item;
         $item->save();
 
-        return("Success updating data !");
+        return redirect('item')->with('message','success updating data');
     }
-    public function delete(request $request,$id){
+    public function destroy(request $request,$id){
         $item = Item::find($id);
         $item->delete();
 
-        return ("Data has been deteled !");
+        return redirect('item')->with('message','success deleting data');
     }
 }

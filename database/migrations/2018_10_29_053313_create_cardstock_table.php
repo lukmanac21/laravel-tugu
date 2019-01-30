@@ -13,7 +13,7 @@ class CreateCardstockTable extends Migration
      */
     public function up()
     {
-        Schema::create('cardstock', function (Blueprint $table) {
+        Schema::create('cardstocks', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_users')->unsigned()->index();
             $table->foreign('id_users')
@@ -30,6 +30,6 @@ class CreateCardstockTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cardstock');
+        Schema::dropIfExists('cardstocks');
     }
 }

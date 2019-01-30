@@ -23,7 +23,7 @@ class CreateDetailsTable extends Migration
             $table->integer('id_cardstock')->unsigned()->index();
             $table->foreign('id_cardstock')
                 ->references('id')
-                ->on('cardstock')
+                ->on('cardstocks')
                 ->onUpdate('cascade');
             $table->integer('qty_item');
             $table->string('description');
