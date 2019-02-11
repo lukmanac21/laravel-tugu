@@ -50,3 +50,5 @@ Route::put('/item/{id}','ItemController@update');
 Route::delete('/item/{id}','ItemController@delete');
 
 Route::post('card','CardController@create');
+Route::get('user','UserController@index');
+Route::post('user','UserController@create');

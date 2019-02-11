@@ -11,5 +11,8 @@ class Item extends Model
     public function detail(){
         return $this->hasMany('App\detail');
     }
+    public function itemlist(){
+        return $this->hasOne('App\Itemlist');
+    }
     
 }

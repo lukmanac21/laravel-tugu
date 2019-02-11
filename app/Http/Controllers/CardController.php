@@ -15,10 +15,8 @@ class CardController extends Controller
         ->groupBy('cardstocks.id')
         ->get();
 
-        $details = Cardstock::join('details', 'cardstocks.id', '=', 'details.id_cardstock')
-        ->join('items', 'details.id_item', '=', 'items.id')
-        ->get();
-        return view('pages/card',compact('cards','details'));
+        
+        return view('pages/card',compact('cards'));
     }
     public function create(request $request){
         $card = new CardStock;
@@ -43,5 +41,11 @@ class CardController extends Controller
 
         return ("Adding to card was success !");
        
+    }
+    public function detail($id){
+        $details =  Cardstock::join('details', 'cardstocks.id', '=', 'details.id_cardstock')
+        ->join('items', 'details.id_item', '=', 'items.id')
+        ->get();
+        return view('pages/detail',compact('details','id'));
     }
 }

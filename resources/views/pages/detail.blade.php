@@ -13,22 +13,22 @@
                 <thead class="thead-light">
                   <tr>
                   <th scope="col">No</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">By</th>
                     <th scope="col">Item</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Description</th>
                     <th scope="col">Edit</th>
                   </tr>
                 </thead>
                 <tbody>
                
-                @foreach($cards as $index => $card )
+                @foreach($details as $index => $detail )
   
                     <tr>
                         <td scope="col">{{$index +1}}</td>
-                        <td scope="col">{{$card->date}}</td>
-                        <td scope="col">{{$card->user->name}}</td>                       
-                        <td scope="col"><a href="{{action('CardController@detail', $card['id'])}}" class="btn btn-warning">Detail</td>
-                        <td scope="col"><a data-toggle="modal" data-target="#edit{{$card->id}}" class="btn btn-danger">Edit</td>
+                        <td scope="col">{{$detail->name_item}}</td>
+                        <td scope="col">{{$detail->qty_item}}</td>                       
+                        <td scope="col">{{$detail->description}}</td>
+                        <td scope="col"><a data-toggle="modal" data-target="#edit{{$detail->id}}" class="btn btn-danger">Edit</td>
                     </tr> 
                     @endforeach
 

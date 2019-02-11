@@ -6,12 +6,36 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\User;
+use App\Roles;
+use App\Position;
 
 class UserController extends Controller
 {
     public function index(){
-        $users = User::all();
-        return view('pages/user', compact('users'));
+        $users = User::all()->where('id_roles','2');
+        $roles = Roles::all();
+        $poss = Position::all();
+        return view('pages/user', compact('users','roles','poss'));
+    }
+    public function store(request $request){
+        $request->validate([
+            'id_roles' => 'required|integer',
+            'id_position' => 'required|integer',
+            'name' => 'required|string',
+            'address' => 'required|string',
+            'email' => 'required|string|email|unique:users',
+            'password' => 'required|string'
+        ]);
+        $user = new User([
+            'id_roles' => $request->id_roles,
+            'id_position' => $request->id_position,
+            'name' => $request->name,
+            'address' => $request->address,
+            'email' => $request->email,
+            'password' => bcrypt($request->password)
+        ]);
+        $user->save();
+        return redirect('user');
     }
     //create new user
     public function create(request $request){
@@ -59,12 +83,15 @@ class UserController extends Controller
         $token->save();
         if($user->id_roles != '1')
             $status = ['status' => false, 'message'=>'Bukan admin'];
+            
         else
             $status = ['status' => true, 'message'=>'admin'];
         return response()->json([
             'access_token' => $tokenResult->accessToken,
             'token_type' => 'Bearer',
             'status' => $status,
+            'email' => $user->email,
+            'user' => $user->name,
             'expires_at' => Carbon::parse(
                 $tokenResult->token->expires_at
             )->toDateTimeString()

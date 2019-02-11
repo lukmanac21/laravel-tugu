@@ -15,26 +15,6 @@
         <!-- Navigation -->
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="/user">
-              <i class="ni ni-single-02 text-primary"></i> User
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/position">
-              <i class="ni ni-planet text-blue"></i> Position
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/item">
-              <i class="ni ni-bullet-list-67 text-primary"></i>Item
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/list">
-              <i class="ni ni-align-center text-primary"></i>Stock Item
-            </a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="/card">
               <i class="ni ni-basket text-primary"></i> Card
             </a>
